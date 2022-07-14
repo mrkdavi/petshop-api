@@ -1,10 +1,12 @@
 import {
   Column,
   CreateDateColumn,
+  Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
 
+@Entity("address")
 export class address {
   @PrimaryGeneratedColumn("increment")
   id: number;

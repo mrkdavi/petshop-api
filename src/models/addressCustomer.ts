@@ -1,5 +1,11 @@
-import { CreateDateColumn, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import {
+  CreateDateColumn,
+  Entity,
+  PrimaryColumn,
+  UpdateDateColumn,
+} from "typeorm";
 
+@Entity("addres_customers")
 export class addressCustomer {
   @PrimaryColumn("int", { name: "address_id" })
   addressId: number;
