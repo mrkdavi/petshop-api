@@ -50,5 +50,7 @@ export class CreateAddress1657808036611 implements MigrationInterface {
     );
   }
 
-  public async down(queryRunner: QueryRunner): Promise<void> {}
+  public async down(queryRunner: QueryRunner): Promise<void> {
+    queryRunner.dropTable('address');
+  }
 }
