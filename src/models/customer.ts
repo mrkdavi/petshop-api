@@ -1,7 +1,12 @@
-import { Column, CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from "typeorm";
 
 export class customer {
-  @PrimaryGeneratedColumn('increment')
+  @PrimaryGeneratedColumn("increment")
   id: number;
 
   @Column({ length: 255 })
@@ -27,7 +32,7 @@ export class customer {
     name: string,
     birthday: Date,
     phone: string,
-    isOwner: boolean,
+    isOwner: boolean
   ) {
     this.id = id;
     this.name = name;
