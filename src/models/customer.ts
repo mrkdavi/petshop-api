@@ -2,12 +2,15 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
+import { AddressCustomer } from "./addressCustomer";
+import { Pet } from "./pet";
 
 @Entity("customers")
-export class customer {
+export class Customer {
   @PrimaryGeneratedColumn("increment")
   id: number;
 
@@ -22,6 +25,15 @@ export class customer {
 
   @Column({ name: "is_owner" })
   isOwner: boolean;
+
+  @OneToMany(() => Pet, (pet) => pet.owner)
+  pets: Pet[];
+
+  @OneToMany(
+    () => AddressCustomer,
+    (addressCustomer) => addressCustomer.customer
+  )
+  addressCustomers: AddressCustomer[];
 
   @CreateDateColumn({ name: "created_at" })
   createdAt: number;

@@ -2,12 +2,14 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
+import { AddressCustomer } from "./addressCustomer";
 
 @Entity("address")
-export class address {
+export class Address {
   @PrimaryGeneratedColumn("increment")
   id: number;
 
@@ -25,6 +27,12 @@ export class address {
 
   @Column({ nullable: true })
   nickname: string;
+
+  @OneToMany(
+    () => AddressCustomer,
+    (addressCustomer) => addressCustomer.address
+  )
+  addressCustomers: AddressCustomer[];
 
   @CreateDateColumn({ name: "created_at" })
   createdAt: number;

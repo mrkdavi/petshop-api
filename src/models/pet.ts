@@ -2,12 +2,16 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
+import { Caretaker } from "./caretaker";
+import { Customer } from "./customer";
 
 @Entity("pets")
-export class pet {
+export class Pet {
   @PrimaryGeneratedColumn("increment")
   id: number;
 
@@ -29,11 +33,13 @@ export class pet {
   @Column({ length: 10 })
   sex: string;
 
-  @Column({ name: "customer_id" })
-  customerId?: number;
-  
-  @Column({ name: "caretaker_id" })
-  caretakerId: number;
+  @ManyToOne(() => Customer, (customer) => customer)
+  @JoinColumn({ name: "customer_id" })
+  owner: Customer
+
+  @ManyToOne(() => Caretaker, (caretaker) => caretaker.pets)
+  @JoinColumn({ name: "caretaker_id" })
+  caretaker: Caretaker
 
   @CreateDateColumn({ name: "created_at" })
   createdAt: number;

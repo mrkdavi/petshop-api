@@ -2,12 +2,17 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
+import { Address } from "./address";
+import { Pet } from "./pet";
 
 @Entity("caretakers")
-export class caretakers {
+export class Caretaker {
   @PrimaryGeneratedColumn("increment")
   id: number;
 
@@ -23,8 +28,12 @@ export class caretakers {
   @Column({ length: 255 })
   specialty: string;
 
-  @Column({ name: "address_id" })
-  AddressId: number;
+  @OneToOne(() => Address)
+  @JoinColumn({ name: "address_id" })
+  address: Address;
+
+  @OneToMany(() => Pet, (pet) => pet.caretaker)
+  pets: Pet[];
 
   @CreateDateColumn({ name: "created_at" })
   createdAt: number;
