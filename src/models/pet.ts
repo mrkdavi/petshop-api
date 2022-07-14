@@ -35,7 +35,7 @@ export class Pet {
 
   @ManyToOne(() => Customer, (customer) => customer)
   @JoinColumn({ name: "customer_id" })
-  owner: Customer
+  owner?: Customer
 
   @ManyToOne(() => Caretaker, (caretaker) => caretaker.pets)
   @JoinColumn({ name: "caretaker_id" })

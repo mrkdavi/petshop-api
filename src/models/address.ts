@@ -23,10 +23,10 @@ export class Address {
   number: number;
 
   @Column({ nullable: true })
-  complement: string;
+  complement?: string;
 
   @Column({ nullable: true })
-  nickname: string;
+  nickname?: string;
 
   @OneToMany(
     () => AddressCustomer,

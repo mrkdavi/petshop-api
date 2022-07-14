@@ -27,7 +27,7 @@ export class Customer {
   isOwner: boolean;
 
   @OneToMany(() => Pet, (pet) => pet.owner)
-  pets: Pet[];
+  pets?: Pet[];
 
   @OneToMany(
     () => AddressCustomer,

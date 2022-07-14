@@ -26,7 +26,7 @@ export class CreateAddress1657808036611 implements MigrationInterface {
             type: "int",
           },
           {
-            name: "complemente",
+            name: "complement",
             type: "varchar(255)",
             isNullable: true,
           },
