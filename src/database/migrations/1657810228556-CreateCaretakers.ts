@@ -18,17 +18,17 @@ export class CreateCaretakers1657810228556 implements MigrationInterface {
             type: "varchar(255)",
           },
           {
-            name: "birthday",
+            name: "birth_date",
             type: "date",
           },
           {
             name: "phone",
-            type: "varchar(255)",
+            type: "varchar(20)",
             isUnique: true,
           },
           {
             name: "specialty",
-            type: "varchar(255)",
+            type: "varchar(20)",
           },
           {
             name: "address_id",

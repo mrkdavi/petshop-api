@@ -18,7 +18,7 @@ export class CreatePets1657810524254 implements MigrationInterface {
             type: "varchar(255)",
           },
           {
-            name: "birthday",
+            name: "birth_date",
             type: "date",
           },
           {

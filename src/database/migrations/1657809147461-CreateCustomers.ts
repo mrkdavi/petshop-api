@@ -18,12 +18,12 @@ export class CreateCustomers1657809147461 implements MigrationInterface {
             type: "varchar(255)",
           },
           {
-            name: "birthday",
+            name: "birth_date",
             type: "date",
           },
           {
             name: "phone",
-            type: "varchar(255)",
+            type: "varchar(20)",
             isUnique: true,
           },
           {

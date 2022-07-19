@@ -32,7 +32,7 @@ export class CreateAddress1657808036611 implements MigrationInterface {
           },
           {
             name: "nickname",
-            type: "varchar(255)",
+            type: "varchar(30)",
             isNullable: true,
           },
           {
