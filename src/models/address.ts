@@ -28,12 +28,6 @@ export class Address {
   @Column({ nullable: true })
   nickname?: string;
 
-  @OneToMany(
-    () => AddressCustomer,
-    (addressCustomer) => addressCustomer.address
-  )
-  addressCustomers: AddressCustomer[];
-
   @CreateDateColumn({ name: "created_at" })
   createdAt: number;
 

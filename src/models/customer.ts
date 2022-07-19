@@ -7,6 +7,7 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 import { AddressCustomer } from "./addressCustomer";
+import { Adoption } from "./adoption";
 import { Pet } from "./pet";
 
 @Entity("customers")
@@ -34,6 +35,9 @@ export class Customer {
     (addressCustomer) => addressCustomer.customer
   )
   addressCustomers: AddressCustomer[];
+
+  @OneToMany(() => Adoption, (adoption) => adoption.customer)
+  adoptions: Adoption[];
 
   @CreateDateColumn({ name: "created_at" })
   createdAt: number;

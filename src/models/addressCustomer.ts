@@ -3,6 +3,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToOne,
   PrimaryColumn,
   UpdateDateColumn,
 } from "typeorm";
@@ -17,7 +18,7 @@ export class AddressCustomer {
   @PrimaryColumn("int", { name: "customer_id" })
   customerId: number;
 
-  @ManyToOne(() => Address, (address) => address.addressCustomers)
+  @OneToOne(() => Address)
   @JoinColumn({ name: "address_id" })
   address: Address;
 
