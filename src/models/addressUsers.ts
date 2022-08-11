@@ -1,5 +1,6 @@
 import {
   CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
@@ -8,27 +9,30 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 import { Address } from "./address";
-import { Customer } from "./customer";
+import { User } from "./user";
 
-@Entity("addres_customers")
-export class AddressCustomer {
-  @PrimaryColumn("int", { name: "address_id" })
+@Entity("address_users")
+export class AddressUser {
+  @PrimaryColumn({ name: "user_id" })
+  userId: number;
+  
+  @PrimaryColumn({ name: "address_id" })
   addressId: number;
-
-  @PrimaryColumn("int", { name: "customer_id" })
-  customerId: number;
+  
+  @ManyToOne(() => User, (user) => user.addresses)
+  @JoinColumn({ name: "user_id" })
+  user: User;
 
   @OneToOne(() => Address)
   @JoinColumn({ name: "address_id" })
   address: Address;
-
-  @ManyToOne(() => Customer, (customer) => customer.addressCustomers)
-  @JoinColumn({ name: "customer_id" })
-  customer: Customer;
 
   @CreateDateColumn({ name: "created_at" })
   createdAt: number;
 
   @UpdateDateColumn({ name: "updated_at" })
   updatedAt: number;
+
+  @DeleteDateColumn({ name: "deleted_at" })
+  deletedAt: Date;
 }

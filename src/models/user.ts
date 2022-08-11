@@ -3,42 +3,38 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
-  JoinColumn,
   OneToMany,
-  OneToOne,
   PrimaryColumn,
   UpdateDateColumn,
 } from "typeorm";
 import { uuidGenerator } from "../utils/uuidGenerator";
 import { Activity } from "./Activity";
-import { User } from "./user";
+import { AddressUser } from "./addressUsers";
+import { Adoption } from "./adoption";
+import { Pet } from "./pet";
 
-@Entity("pets")
-export class Pet {
+@Entity("users")
+export class User {
   @PrimaryColumn()
   id: string;
 
   @Column()
   name: string;
 
-  @Column({name: "birth_date", nullable: true})
+  @Column()
+  email: string;
+
+  @Column()
+  password: string;
+
+  @Column({ name: "birth_Date" })
   birthDate?: Date;
 
   @Column()
-  specie: string;
-  
-  @Column({nullable: true})
-  race?: string;
+  phone?: string;
 
   @Column()
-  size: string;
-
-  @Column()
-  sex: string;
-
-  @OneToOne(() => User, (user) => user.pets)
-  @JoinColumn({ name: "owner_id" })
-  owner: User;
+  role: string;
 
   @CreateDateColumn({ name: "created_at" })
   createdAt: Date;
@@ -46,14 +42,23 @@ export class Pet {
   @UpdateDateColumn({ name: "updated_at" })
   updatedAt: Date;
 
-  @OneToMany(() => Activity, (activity) => activity.pet)
+  @OneToMany(() => Pet, (pet) => pet.owner)
+  pets: Pet[];
+
+  @OneToMany(() => Adoption, (adoption) => adoption.owner)
+  adoptions: Adoption[];
+
+  @OneToMany(() => AddressUser, (address) => address.user)
+  addresses: AddressUser[];
+
+  @OneToMany(() => Activity, (activity) => activity.caretaker)
   activities: Activity[];
 
   @DeleteDateColumn({ name: "deleted_at" })
   deletedAt: Date;
 
   constructor() {
-    if(!this.id) {
+    if (!this.id) {
       this.id = uuidGenerator();
     }
   }

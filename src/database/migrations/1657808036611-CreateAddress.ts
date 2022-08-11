@@ -4,22 +4,20 @@ export class CreateAddress1657808036611 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: "address",
+        name: "addresses",
         columns: [
           {
             name: "id",
-            type: "int",
+            type: "varchar",
             isPrimary: true,
-            generationStrategy: "increment",
-            isGenerated: true,
           },
           {
             name: "district",
-            type: "varchar(255)",
+            type: "varchar",
           },
           {
             name: "street",
-            type: "varchar(255)",
+            type: "varchar",
           },
           {
             name: "number",
@@ -27,12 +25,12 @@ export class CreateAddress1657808036611 implements MigrationInterface {
           },
           {
             name: "complement",
-            type: "varchar(255)",
+            type: "varchar",
             isNullable: true,
           },
           {
             name: "nickname",
-            type: "varchar(30)",
+            type: "varchar",
             isNullable: true,
           },
           {
@@ -45,12 +43,17 @@ export class CreateAddress1657808036611 implements MigrationInterface {
             type: "timestamp",
             default: "CURRENT_TIMESTAMP",
           },
+          {
+            name: "deleted_at",
+            type: "timestamp",
+            isNullable: true,
+          },
         ],
       })
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable("address");
+    await queryRunner.dropTable("addresses");
   }
 }

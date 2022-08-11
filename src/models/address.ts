@@ -2,21 +2,22 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  OneToMany,
-  PrimaryGeneratedColumn,
+  OneToOne,
+  PrimaryColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { AddressCustomer } from "./addressCustomer";
+import { uuidGenerator } from "../utils/uuidGenerator";
+import { AddressUser } from "./addressUsers";
 
-@Entity("address")
+@Entity("addresses")
 export class Address {
-  @PrimaryGeneratedColumn("increment")
-  id: number;
+  @PrimaryColumn()
+  id: string;
 
-  @Column({ length: 255 })
+  @Column()
   district: string;
 
-  @Column({ length: 255 })
+  @Column()
   street: string;
 
   @Column()
@@ -29,24 +30,17 @@ export class Address {
   nickname?: string;
 
   @CreateDateColumn({ name: "created_at" })
-  createdAt: number;
+  createdAt: Date;
 
   @UpdateDateColumn({ name: "updated_at" })
-  updatedAt: number;
+  updatedAt: Date;
 
-  constructor(
-    id: number,
-    district: string,
-    street: string,
-    number: number,
-    complement?: string,
-    nickname?: string
-  ) {
-    this.id = id;
-    this.district = district;
-    this.street = street;
-    this.number = number;
-    this.complement = complement;
-    this.nickname = nickname;
+  @OneToOne(() => AddressUser, (addressUser) => addressUser.address)
+  user: AddressUser;
+
+  constructor() {
+    if (!this.id) {
+      this.id = uuidGenerator();
+    }
   }
 }

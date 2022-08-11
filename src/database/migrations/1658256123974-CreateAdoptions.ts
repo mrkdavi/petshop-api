@@ -8,14 +8,17 @@ export class CreateAdoptions1658256123974 implements MigrationInterface {
               name: "adoptions",
               columns: [
                 {
-                  name: "pet_id",
-                  type: "int",
+                  name: "id",
+                  type: "varchar",
                   isPrimary: true,
                 },
                 {
-                  name: "customer_id",
-                  type: "int",
-                  isPrimary: true,
+                  name: "pet_id",
+                  type: "varchar",
+                },
+                {
+                  name: "owner_id",
+                  type: "varchar",
                 },
                 {
                   name: "adopted_at",
@@ -27,6 +30,11 @@ export class CreateAdoptions1658256123974 implements MigrationInterface {
                   type: "timestamp",
                   default: "CURRENT_TIMESTAMP",
                 },
+                {
+                  name: "deleted_at",
+                  type: "timestamp",
+                  isNullable: true,
+                },
               ],
               foreignKeys: [
                 {
@@ -35,8 +43,8 @@ export class CreateAdoptions1658256123974 implements MigrationInterface {
                   referencedColumnNames: ["id"],
                 },
                 {
-                  columnNames: ["customer_id"],
-                  referencedTableName: "customers",
+                  columnNames: ["owner_id"],
+                  referencedTableName: "users",
                   referencedColumnNames: ["id"],
                 },
               ],

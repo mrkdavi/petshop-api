@@ -1,38 +1,20 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class CreateCaretakers1657810228556 implements MigrationInterface {
+export class CreateAddressUsers1657809790902 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: "caretakers",
+        name: "address_users",
         columns: [
           {
-            name: "id",
-            type: "int",
-            isPrimary: true,
-            generationStrategy: "increment",
-            isGenerated: true,
-          },
-          {
-            name: "name",
-            type: "varchar(255)",
-          },
-          {
-            name: "birth_date",
-            type: "date",
-          },
-          {
-            name: "phone",
-            type: "varchar(20)",
-            isUnique: true,
-          },
-          {
-            name: "specialty",
-            type: "varchar(20)",
-          },
-          {
             name: "address_id",
-            type: "int",
+            type: "varchar",
+            isPrimary: true,
+          },
+          {
+            name: "user_id",
+            type: "varchar",
+            isPrimary: true,
           },
           {
             name: "created_at",
@@ -44,11 +26,21 @@ export class CreateCaretakers1657810228556 implements MigrationInterface {
             type: "timestamp",
             default: "CURRENT_TIMESTAMP",
           },
+          {
+            name: "deleted_at",
+            type: "timestamp",
+            isNullable: true,
+          },
         ],
         foreignKeys: [
           {
             columnNames: ["address_id"],
-            referencedTableName: "address",
+            referencedTableName: "addresses",
+            referencedColumnNames: ["id"],
+          },
+          {
+            columnNames: ["user_id"],
+            referencedTableName: "users",
             referencedColumnNames: ["id"],
           },
         ],
@@ -57,6 +49,6 @@ export class CreateCaretakers1657810228556 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable("caretakers");
+    await queryRunner.dropTable("address_customers");
   }
 }

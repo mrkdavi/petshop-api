@@ -1,10 +1,11 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm";
+import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class CreatePets1657810524254 implements MigrationInterface {
+export class CreateActivities1660255238288 implements MigrationInterface {
+
   public async up(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.createTable(
-      new Table({
-        name: "pets",
+    queryRunner.createTable(new Table(
+      {
+        name: "activities",
         columns: [
           {
             name: "id",
@@ -12,35 +13,20 @@ export class CreatePets1657810524254 implements MigrationInterface {
             isPrimary: true,
           },
           {
+            name: "caretaker_id",
+            type: "varchar",
+          },
+          {
+            name: "pet_id",
+            type: "varchar",
+          },
+          {
             name: "name",
             type: "varchar",
           },
           {
-            name: "birth_date",
-            type: "date",
-            isNullable: true,
-          },
-          {
-            name: "specie",
+            name: "description",
             type: "varchar",
-          },
-          {
-            name: "race",
-            type: "varchar",
-            isNullable: true,
-          },
-          {
-            name: "size",
-            type: "varchar",
-          },
-          {
-            name: "sex",
-            type: "varchar",
-          },
-          {
-            name: "owner_id",
-            type: "string",
-            isNullable: true,
           },
           {
             name: "created_at",
@@ -60,16 +46,22 @@ export class CreatePets1657810524254 implements MigrationInterface {
         ],
         foreignKeys: [
           {
-            columnNames: ["owner_id"],
+            columnNames: ["caretaker_id"],
             referencedTableName: "users",
             referencedColumnNames: ["id"],
           },
+          {
+            columnNames: ["pet_id"],
+            referencedTableName: "pets",
+            referencedColumnNames: ["id"],
+          },
         ],
-      })
-    );
+      }
+    ))
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable("pets");
+    queryRunner.dropTable("activities")
   }
+
 }
