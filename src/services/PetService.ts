@@ -7,7 +7,10 @@ import { Pet } from "../models/pet";
 
 @Service("PetService")
 export class PetService implements IPetService {
-  constructor(@Inject('PetRepository') private petRepository: IPetRepository) {}
+  constructor(
+    @Inject("PetRepository")
+    private readonly petRepository: IPetRepository
+  ) {}
 
   async findAll(): Promise<Pet[]> {
     return this.petRepository.find();
@@ -24,20 +27,22 @@ export class PetService implements IPetService {
   async update(id: string, petData: Pet): Promise<Pet> {
     const pet = await this.petRepository.findOne(id);
 
-    if(!pet) {
+    if (!pet) {
       throw new Error("Pet not found");
     }
 
-    return this.petRepository.save(plainToInstance(Pet, { ...pet, ...petData }));
+    return this.petRepository.save(
+      plainToInstance(Pet, { ...pet, ...petData })
+    );
   }
 
   async delete(id: string): Promise<void> {
     const pet = await this.petRepository.findOne(id);
 
-    if(!pet) {
+    if (!pet) {
       throw new Error("Pet not found");
     }
-    
+
     await this.petRepository.softDelete(id);
   }
 }
