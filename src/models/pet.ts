@@ -38,7 +38,7 @@ export class Pet {
 
   @OneToOne(() => User, (user) => user.pets)
   @JoinColumn({ name: "owner_id" })
-  owner: User;
+  owner?: User;
 
   @CreateDateColumn({ name: "created_at" })
   createdAt: Date;
