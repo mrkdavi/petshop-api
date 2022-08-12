@@ -39,7 +39,7 @@ export class CreatePets1657810524254 implements MigrationInterface {
           },
           {
             name: "owner_id",
-            type: "string",
+            type: "varchar",
             isNullable: true,
           },
           {

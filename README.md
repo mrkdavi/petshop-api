@@ -3,4 +3,4 @@
 A repo to exercise typescript, typeORM and express.
 
 ## Diagrama
-![Diagram](diagrams/PetShopDatabaseDiagram_bg.png)
+![Diagram](./docs/diagrams/PetShopDatabaseDiagram_bg.png)
