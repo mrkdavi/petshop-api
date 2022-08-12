@@ -27,10 +27,10 @@ export class User {
   @Column()
   password: string;
 
-  @Column({ name: "birth_Date" })
+  @Column({ name: "birth_Date", nullable: true })
   birthDate?: Date;
 
-  @Column()
+  @Column({ nullable: true })
   phone?: string;
 
   @Column()
