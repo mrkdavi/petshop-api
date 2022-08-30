@@ -2,7 +2,7 @@ import { plainToInstance } from "class-transformer";
 import { Inject, Service } from "typedi";
 import { CreateAddressDto } from "../@types/dtos/addressDto";
 import { IAddressRepository } from "../@types/repositories/IAddressRepository";
-import { Address } from "../models/address";
+import { Address } from "../models/Address";
 
 @Service("AddressService")
 export class AddressService {
