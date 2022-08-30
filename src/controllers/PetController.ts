@@ -14,7 +14,8 @@ export class PetController {
     res.json(pet);
   }
   async findAll(req: Request, res: Response) {
-    const pets = await this.petService.findAll();
+    const { query } = req;
+    const pets = await this.petService.findAll(query);
     res.json(pets);
   }
   async findOne(req: Request, res: Response) {
@@ -32,5 +33,31 @@ export class PetController {
     const { id } = req.params;
     await this.petService.delete(id);
     res.status(204).send();
+  }
+  async adopt(req: Request, res: Response) {
+    const { id } = req.params;
+    // const { userId } = req.user;
+    const adoptData = {
+      petId: id,
+      // TODO: get user id from token
+      userId: 'ID here!',
+    }
+    const adoption = await this.petService.adopt(adoptData);
+  }
+  async listActivities(req: Request, res: Response) {
+    const { id } = req.params;
+    const activities = await this.petService.listActivities(id);
+    res.json(activities);
+  }
+  async createActivity(req: Request, res: Response) {
+    const { id } = req.params;
+    // const { userId } = req.user;
+    const activityData = {
+      petId: id,
+      // TODO: get user id from token
+      userId: 'ID here!',
+      ...req.body,
+    }
+    return this.petService.createActivity(activityData);
   }
 }
