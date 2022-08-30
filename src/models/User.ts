@@ -9,9 +9,9 @@ import {
 } from "typeorm";
 import { uuidGenerator } from "../utils/uuidGenerator";
 import { Activity } from "./Activity";
-import { AddressUser } from "./addressUsers";
-import { Adoption } from "./adoption";
-import { Pet } from "./pet";
+import { AddressUser } from "./AddressUsers";
+import { Adoption } from "./Adoption";
+import { Pet } from "./Pet";
 
 @Entity("users")
 export class User {

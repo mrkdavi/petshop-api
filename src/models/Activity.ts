@@ -8,8 +8,8 @@ import {
   PrimaryColumn,
   DeleteDateColumn,
 } from "typeorm";
-import { Pet } from "./pet";
-import { User } from "./user";
+import { Pet } from "./Pet";
+import { User } from "./User";
 
 @Entity("activities")
 export class Activity {
