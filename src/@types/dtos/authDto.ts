@@ -21,3 +21,8 @@ export interface ResetPasswordDto {
   password: string;
   code: string;
 }
+
+export interface UserTokenDto {
+  id: string;
+  role: string;
+}
