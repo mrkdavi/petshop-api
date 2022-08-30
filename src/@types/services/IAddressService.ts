@@ -1,4 +1,4 @@
-import { Address } from "../../models/address";
+import { Address } from "../../models/Address";
 import { CreateAddressDto } from "../dtos/addressDto";
 
 export interface IAddressService {

@@ -1,4 +1,4 @@
 import { Repository } from "typeorm";
-import { Pet } from "../../models/pet";
+import { Pet } from "../../models/Pet";
 
 export interface IPetRepository extends Repository<Pet> {}
