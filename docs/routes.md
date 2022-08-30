@@ -1,29 +1,29 @@
 # Routes
 
 ## Users
-- [ ] /users
-  - [ ] [GET] /
+- [x] /users
+  - [x] [GET] /
     - get all users
-  - [ ] [POST] /
+  - [x] [POST] /
     - create a new user
-  - [ ] [GET] /:id
+  - [x] [GET] /:id
     - get a user by id
-  - [ ] [PUT] /:id
+  - [x] [PUT] /:id
     - update a user by id
-  - [ ] [DELETE] /:id
+  - [x] [DELETE] /:id
     - delete a user by id
 
 ## Pets
 - [ ] /pets
-  - [ ] [GET] /
+  - [x] [GET] /
     - get all pets
-  - [ ] [POST] /
+  - [x] [POST] /
     - create a new pet
-  - [ ] [GET] /:id
+  - [x] [GET] /:id
     - get a pet by id
-  - [ ] [PUT] /:id
+  - [x] [PUT] /:id
     - update a pet by id
-  - [ ] [DELETE] /:id
+  - [x] [DELETE] /:id
     - delete a pet by id
   - [ ] [POST] /:id/adopt
     - adopt a pet by id
@@ -33,14 +33,14 @@
     - create a new activity for a pet by id
 
 ## Addresses
-- [ ] /addresses
-  - [ ] [GET] /
+- [x] /addresses
+  - [x] [GET] /
     - get all addresses
-  - [ ] [POST] /
+  - [x] [POST] /
     - create a new address
-  - [ ] [GET] /:id
+  - [x] [GET] /:id
     - get an address by id
-  - [ ] [PUT] /:id
+  - [x] [PUT] /:id
     - update an address by id
-  - [ ] [DELETE] /:id
+  - [x] [DELETE] /:id
     - delete an address by id
