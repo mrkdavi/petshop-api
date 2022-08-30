@@ -1,5 +1,15 @@
 # Routes
 
+## Auth
+- [ ] POST /auth/login
+  - login with email and password
+- [ ] POST /auth/signup
+  - signup in the system
+- [ ] POST /auth/forgot
+  - send email to reset password
+- [ ] POST /auth/code
+  - send code to reset password
+
 ## Users
 - [x] /users
   - [x] [GET] /
