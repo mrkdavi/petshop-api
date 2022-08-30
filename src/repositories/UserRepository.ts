@@ -1,6 +1,6 @@
 import { EntityRepository, Repository } from "typeorm";
 import { IUserRepository } from "../@types/repositories/IUserRepository";
-import { User } from "../models/user";
+import { User } from "../models/User";
 
 @EntityRepository(User)
 export class UserRepository

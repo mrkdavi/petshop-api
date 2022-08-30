@@ -3,7 +3,7 @@ import { Inject, Service } from "typedi";
 import { CreatePetDto } from "../@types/dtos/petDto";
 import { TypedRequest } from "../@types/request/TypedRequest";
 import { IPetService } from "../@types/services/IPetService";
-import { Pet } from "../models/pet";
+import { Pet } from "../models/Pet";
 
 @Service('PetController')
 export class PetController {

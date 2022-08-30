@@ -3,7 +3,7 @@ import { Inject, Service } from "typedi";
 import { CreateUserDto } from "../@types/dtos/userDto";
 import { TypedRequest } from "../@types/request/TypedRequest";
 import { IUserService } from "../@types/services/IUserService";
-import { User } from "../models/user";
+import { User } from "../models/User";
 
 @Service('UserController')
 export class UserController {

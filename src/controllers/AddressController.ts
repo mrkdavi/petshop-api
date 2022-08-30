@@ -3,7 +3,7 @@ import { Inject, Service } from "typedi";
 import { CreateAddressDto } from "../@types/dtos/addressDto";
 import { TypedRequest } from "../@types/request/TypedRequest";
 import { IAddressService } from "../@types/services/IAddressService";
-import { Address } from "../models/address";
+import { Address } from "../models/Address";
 
 @Service('AddressController')
 export class AddressController {

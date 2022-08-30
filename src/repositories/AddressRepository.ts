@@ -1,5 +1,5 @@
 import { EntityRepository, Repository } from "typeorm";
-import { Address } from "../models/address";
+import { Address } from "../models/Address";
 import { IAddressRepository } from "../@types/repositories/IAddressRepository";
 
 @EntityRepository(Address)
