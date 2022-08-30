@@ -7,7 +7,7 @@ import { Pet } from "../models/Pet";
 
 @Service('PetController')
 export class PetController {
-  constructor(@Inject('PetService') private petService:   IPetService) {}
+  constructor(@Inject('PetService') private petService: IPetService) {}
   async create(req: TypedRequest<CreatePetDto>, res: Response) {
     const { body } = req;
     const pet = await this.petService.create(body);

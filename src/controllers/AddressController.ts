@@ -5,9 +5,11 @@ import { TypedRequest } from "../@types/request/TypedRequest";
 import { IAddressService } from "../@types/services/IAddressService";
 import { Address } from "../models/Address";
 
-@Service('AddressController')
+@Service("AddressController")
 export class AddressController {
-  constructor(@Inject('AddressService') private addressService:   IAddressService) {}
+  constructor(
+    @Inject("AddressService") private addressService: IAddressService
+  ) {}
   async create(req: TypedRequest<CreateAddressDto>, res: Response) {
     const { body } = req;
     const address = await this.addressService.create(body);

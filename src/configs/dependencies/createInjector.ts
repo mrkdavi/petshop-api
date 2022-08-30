@@ -10,11 +10,13 @@ import { AdoptionRepository } from "../../repositories/AdoptionRepository";
 import "../../controllers/PetController";
 import "../../controllers/UserController";
 import "../../controllers/AddressController";
+import "../../controllers/AuthController";
 
 // services
 import "../../services/PetService";
 import "../../services/UserService";
 import "../../services/AddressService";
+import "../../services/AuthService";
 
 const createDependencyInjector = () => {
   Container.set("PetRepository", getCustomRepository(PetRepository));

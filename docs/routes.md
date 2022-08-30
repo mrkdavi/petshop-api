@@ -1,14 +1,15 @@
 # Routes
 
 ## Auth
-- [ ] POST /auth/login
-  - login with email and password
-- [ ] POST /auth/signup
-  - signup in the system
-- [ ] POST /auth/forgot
-  - send email to reset password
-- [ ] POST /auth/code
-  - send code to reset password
+- [ ] /auth
+  - [ ] POST /login
+    - login with email and password
+  - [ ] POST /signup
+    - sign up in the system
+  - [ ] POST /forgot
+    - send email to reset password
+  - [ ] POST /reset
+    - send code to reset password
 
 ## Users
 - [x] /users

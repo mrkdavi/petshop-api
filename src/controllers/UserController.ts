@@ -7,7 +7,7 @@ import { User } from "../models/User";
 
 @Service('UserController')
 export class UserController {
-  constructor(@Inject('UserService') private userService:   IUserService) {}
+  constructor(@Inject('UserService') private userService: IUserService) {}
   async create(req: TypedRequest<CreateUserDto>, res: Response) {
     const { body } = req;
     const user = await this.userService.create(body);
