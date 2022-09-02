@@ -1,5 +1,4 @@
 import { plainToInstance } from "class-transformer";
-import { token } from "morgan";
 import { Inject, Service } from "typedi";
 import {
   CreateUserDto,
@@ -23,11 +22,12 @@ export class AuthService implements IAuthService {
   async createUser(userData: CreateUserDto): Promise<AuthenticateReturnDto> {
     const role = "customer";
 
-    const user = this.userRepository.findOne({
+    const user = await this.userRepository.findOne({
       where: { email: userData.email },
     });
 
     if (user) {
+      console.log(user);
       throw new Error("User already exists");
     }
 

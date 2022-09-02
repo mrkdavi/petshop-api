@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
 import { Inject, Service } from "typedi";
+import { CreateUserDto } from "../@types/dtos/userDto";
+import { TypedRequest } from "../@types/request/TypedRequest";
 import { IAuthService } from "../@types/services/IAuthService";
 
 @Service('AuthController')
@@ -13,7 +15,7 @@ export class AuthController {
     res.json(token);
   }
 
-  async signup(req: Request, res: Response) {
+  async signup(req: TypedRequest<CreateUserDto>, res: Response) {
     const { body } = req;
     const token = await this.authService.createUser(body);
     res.json(token);
