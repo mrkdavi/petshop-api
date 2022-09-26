@@ -1,6 +1,7 @@
 import { Router } from "express"
 import Container from "typedi";
 import { UserController } from "../controllers/UserController";
+import { authentication } from "../middleware/authentication";
 
 const router = Router();
 
@@ -9,11 +10,11 @@ const getController = (): UserController => {
 }
 
 const createUserRouter = () => {
-  router.get('/', (req, res) => getController().findAll(req, res));
-  router.get('/:id', (req, res) => getController().findOne(req, res));
-  router.post('/', (req, res) => getController().create(req, res));
-  router.put('/:id', (req, res) => getController().update(req, res));
-  router.delete('/:id', (req, res) => getController().delete(req, res));
+  router.get('/', authentication, (req, res) => getController().findAll(req, res));
+  router.get('/:id', authentication, (req, res) => getController().findOne(req, res));
+  router.post('/', authentication, (req, res) => getController().create(req, res));
+  router.put('/:id', authentication, (req, res) => getController().update(req, res));
+  router.delete('/:id', authentication, (req, res) => getController().delete(req, res));
   
   return router;
 }

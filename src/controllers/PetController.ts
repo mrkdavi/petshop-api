@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { Inject, Service } from "typedi";
 import { CreatePetDto } from "../@types/dtos/petDto";
+import { UserRequest } from "../@types/middlewares/UserRequest";
 import { TypedRequest } from "../@types/request/TypedRequest";
 import { IPetService } from "../@types/services/IPetService";
 import { Pet } from "../models/Pet";
@@ -34,30 +35,30 @@ export class PetController {
     await this.petService.delete(id);
     res.status(204).send();
   }
-  async adopt(req: Request, res: Response) {
-    const { id } = req.params;
-    // const { userId } = req.user;
+  async adopt(req: UserRequest, res: Response) {
+    const { id: petId } = req.params;
+    const { id: userId } = req.user;
     const adoptData = {
-      petId: id,
-      // TODO: get user id from token
-      userId: 'ID here!',
-    }
+      petId,
+      userId,
+    };
     const adoption = await this.petService.adopt(adoptData);
+    res.status(201).json(adoption);
   }
   async listActivities(req: Request, res: Response) {
     const { id } = req.params;
     const activities = await this.petService.listActivities(id);
     res.json(activities);
   }
-  async createActivity(req: Request, res: Response) {
-    const { id } = req.params;
-    // const { userId } = req.user;
+  async createActivity(req: UserRequest, res: Response) {
+    const { id: petId } = req.params;
+    const { id: userId } = req.user;
     const activityData = {
-      petId: id,
-      // TODO: get user id from token
-      userId: 'ID here!',
+      petId,
+      userId,
       ...req.body,
     }
-    return this.petService.createActivity(activityData);
+    const activity = this.petService.createActivity(activityData);
+    res.status(201).json(activity);
   }
 }

@@ -1,14 +1,14 @@
 # Routes
 
 ## Auth
-- [ ] /auth
-  - [ ] POST /login
+- [x] /auth
+  - [x] POST /login
     - login with email and password
-  - [ ] POST /signup
+  - [x] POST /signup
     - sign up in the system
-  - [ ] POST /forgot
+  - [x] POST /forgot
     - send email to reset password
-  - [ ] POST /reset
+  - [x] POST /reset
     - send code to reset password
 
 ## Users
@@ -36,11 +36,11 @@
     - update a pet by id
   - [x] [DELETE] /:id
     - delete a pet by id
-  - [ ] [POST] /:id/adopt
+  - [x] [POST] /:id/adopt
     - adopt a pet by id
-  - [ ] [GET] /:id/activities
+  - [x] [GET] /:id/activities
     - get all activities for a pet by id
-  - [ ] [POST] /:id/activities
+  - [x] [POST] /:id/activities
     - create a new activity for a pet by id
 
 ## Addresses
