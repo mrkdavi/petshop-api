@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node src/index.js",
+    "build": "tsc",
     "dev": "nodemon --transpile-only src/index.ts",
     "typeorm:win": "ts-node-dev node_modules/.bin/typeorm",
     "typeorm:create": "npm run typeorm:win migration:create -- -n",
