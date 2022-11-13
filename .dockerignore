@@ -3,4 +3,3 @@ docs
 .git*
 *.md
 node_modules
-.env.example

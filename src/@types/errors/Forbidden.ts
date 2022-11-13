@@ -1,6 +1,6 @@
 import { BaseError } from "./BaseError";
 
-export class Forbidden extends BaseError {
+export default class Forbidden extends BaseError {
   constructor(msg = 'Forbidden') {
     super(msg);
     this.statusCode = 403; 

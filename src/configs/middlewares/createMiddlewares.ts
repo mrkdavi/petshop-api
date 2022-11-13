@@ -5,7 +5,7 @@ import morgan from "morgan";
 
 const createMiddlewares = (app: express.Express) => {
   app.use(cors());
-  app.use(json({ limit: '5mb' }));
+  app.use(json());
   app.use(morgan('dev'));
 };
 

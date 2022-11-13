@@ -1,6 +1,7 @@
 import { plainToInstance } from "class-transformer";
 import { Inject, Service } from "typedi";
 import { CreateAddressDto } from "../@types/dtos/addressDto";
+import NotFound from "../@types/errors/NotFound";
 import { IAddressRepository } from "../@types/repositories/IAddressRepository";
 import { Address } from "../models/Address";
 
@@ -27,7 +28,7 @@ export class AddressService {
     const address = await this.addressRepository.findOne(id);
 
     if (!Address) {
-      throw new Error("Address not found");
+      throw new NotFound("Address not found");
     }
 
     return this.addressRepository.save(
@@ -39,7 +40,7 @@ export class AddressService {
     const Address = await this.addressRepository.findOne(id);
 
     if (!Address) {
-      throw new Error("Address not found");
+      throw new NotFound("Address not found");
     }
 
     await this.addressRepository.softDelete(id);

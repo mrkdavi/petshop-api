@@ -7,6 +7,8 @@ import {
   ForgotPasswordDto,
   ResetPasswordDto,
 } from "../@types/dtos/authDto";
+import Conflict from "../@types/errors/Conflict";
+import Unauthorized from "../@types/errors/Unauthorized";
 import { IUserRepository } from "../@types/repositories/IUserRepository";
 import { IAuthService } from "../@types/services/IAuthService";
 import { User } from "../models/User";
@@ -27,8 +29,7 @@ export class AuthService implements IAuthService {
     });
 
     if (user) {
-      console.log(user);
-      throw new Error("User already exists");
+      throw new Conflict("User already exists");
     }
 
     userData.password = hashPassword(userData.password);
@@ -43,11 +44,11 @@ export class AuthService implements IAuthService {
   async authenticate(userCredentials: AuthenticateDto): Promise<AuthenticateReturnDto> {
     const hashedPassword = hashPassword(userCredentials.password);
     const user = await this.userRepository.findOne({
-      where: { email: userCredentials.email, password: hashedPassword },
+      where: { email: userCredentials.email },
     });
 
     if (!user) {
-      throw new Error("Email or password is incorrect");
+      throw new Unauthorized("Email or password is incorrect");
     }
 
     return generateToken({ id: user.id, role: user.role });

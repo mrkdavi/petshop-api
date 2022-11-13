@@ -17,6 +17,7 @@ export const errorHandler = (app: Express) => {
         message: err.message,
       });
     }
+    console.log(err);
     res.status(500).json({
       statusCode: 500,
       message: "Internal Server Error",
@@ -24,12 +25,8 @@ export const errorHandler = (app: Express) => {
   });
 };
 
-export const errorHandlerWrapper = (fnHandler: RequestHandler) => {
-  return (req: Request, res: Response, next: NextFunction) => {
-    try {
-      Promise.resolve(fnHandler(req, res, next));
-    } catch (err) {
-      next(err);
-    }
-  };
-};
+export const errorHandlerWrapper = (fnHandler: RequestHandler) => (
+  (req: Request, res: Response, next: NextFunction) => (
+    Promise.resolve(fnHandler(req, res, next)).catch((e) => next(e))
+  )
+);

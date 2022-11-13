@@ -9,45 +9,50 @@ import { Pet } from "../models/Pet";
 @Service('PetController')
 export class PetController {
   constructor(@Inject('PetService') private petService: IPetService) {}
-  async create(req: TypedRequest<CreatePetDto>, res: Response) {
-    const { body } = req;
-    const pet = await this.petService.create(body);
+  async create(req: TypedRequest<CreatePetDto> & UserRequest, res: Response) {
+    const { body, user } = req;
+    const pet = await this.petService.create(body, user);
     res.json(pet);
   }
-  async findAll(req: Request, res: Response) {
+  async findAllPublic(_req: Request, res: Response) {
+    const pets = await this.petService.findAll({ owner : null });
+    res.json(pets);
+  }
+  async findAllPrivate(req: Request, res: Response) {
     const { query } = req;
     const pets = await this.petService.findAll(query);
     res.json(pets);
   }
-  async findOne(req: Request, res: Response) {
+  async findOnePublic(req: Request, res: Response) {
+    const { id } = req.params;
+    const pet = await this.petService.findById(id, { owner: null });
+    res.json(pet);
+  }
+  async findOnePrivate(req: Request, res: Response) {
     const { id } = req.params;
     const pet = await this.petService.findById(id);
     res.json(pet);
   }
-  async update(req: TypedRequest<Pet>, res: Response) {
-    const { id } = req.params;
-    const { body } = req;
-    const pet = await this.petService.update(id, body);
+  async update(req: TypedRequest<Pet> & UserRequest, res: Response) {
+    const { body, user, params: { id } } = req;
+    const pet = await this.petService.update(id, body, user);
     res.json(pet);
   }
-  async delete(req: Request, res: Response) {
+  async delete(req: UserRequest, res: Response) {
     const { id } = req.params;
-    await this.petService.delete(id);
+    const { user } = req;
+    await this.petService.delete(id, user);
     res.status(204).send();
   }
   async adopt(req: UserRequest, res: Response) {
     const { id: petId } = req.params;
     const { id: userId } = req.user;
-    const adoptData = {
-      petId,
-      userId,
-    };
-    const adoption = await this.petService.adopt(adoptData);
-    res.status(201).json(adoption);
+    const adoption = await this.petService.adopt({ petId, userId });
+    res.status(200).json(adoption);
   }
-  async listActivities(req: Request, res: Response) {
-    const { id } = req.params;
-    const activities = await this.petService.listActivities(id);
+  async listActivities(req: UserRequest, res: Response) {
+    const { user, params: { id } } = req;
+    const activities = await this.petService.listActivities(id, user);
     res.json(activities);
   }
   async createActivity(req: UserRequest, res: Response) {

@@ -19,13 +19,15 @@ services:
   api:  
     build: .
     container_name: petshop_api
+    tty: true
+    stdin_open: true
     restart: always
     environment:
-      TYPEORM_HOST: petshop_db
+      TYPEORM_HOST: db
     ports:
       - "3000:3000"
     volumes:
-      - ./src:/usr/src/app
+      - .:/usr/app
     depends_on:
       - db
     networks:

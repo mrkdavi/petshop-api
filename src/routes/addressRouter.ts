@@ -10,12 +10,14 @@ const getController = (): AddressController => {
   return Container.get<AddressController>("AddressController");
 }
 
+router.use(authentication)
+
 const createAddressRouter = () => {
-  router.get('/', authentication, errorHandlerWrapper((req, res) => getController().findAll(req, res)));
-  router.get('/:id', authentication, errorHandlerWrapper((req, res) => getController().findOne(req, res)));
-  router.post('/', authentication, errorHandlerWrapper((req, res) => getController().create(req, res)));
-  router.put('/:id', authentication, errorHandlerWrapper((req, res) => getController().update(req, res)));
-  router.delete('/:id', authentication, errorHandlerWrapper((req, res) => getController().delete(req, res)));
+  router.get('/', errorHandlerWrapper((req, res) => getController().findAll(req, res)));
+  router.get('/:id', errorHandlerWrapper((req, res) => getController().findOne(req, res)));
+  router.post('/', errorHandlerWrapper((req, res) => getController().create(req, res)));
+  router.put('/:id', errorHandlerWrapper((req, res) => getController().update(req, res)));
+  router.delete('/:id', errorHandlerWrapper((req, res) => getController().delete(req, res)));
   
   return router;
 }

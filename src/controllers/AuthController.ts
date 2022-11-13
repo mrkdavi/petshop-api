@@ -11,6 +11,7 @@ export class AuthController {
   async login(req: Request, res: Response) {
     const email = req.header('email');
     const password = req.header('password');
+    console.log(req.headers);
     const token = await this.authService.authenticate({email, password});
     res.json(token);
   }

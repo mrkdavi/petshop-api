@@ -2,18 +2,20 @@ import { NextFunction, Response } from "express";
 import { UserRequest } from "../@types/middlewares/UserRequest";
 import { verifyToken } from "../utils/token";
 
-export const authentication = (request: UserRequest, response: Response, next: NextFunction) => {
-  const authorization = request.headers.authorization;
-  
+import Unauthorized from "../@types/errors/Unauthorized";
+
+export const authentication = (request: UserRequest, _response: Response, next: NextFunction) => {
+  const { headers: { authorization } } = request;
+
   if (!authorization) {
-    throw new Error();
+    throw new Unauthorized();
   }
 
   try {
     const user = verifyToken(authorization);
     request.user = user
   } catch (error) {
-    throw new Error();
+    throw new Unauthorized();
   }
 
   next();
