@@ -25,6 +25,10 @@ Install Dependencies
 ```
 npm install
 ```
+Run Migrations
+```
+npm run typeorm:run
+```
 Start Development Server
 ```
 npm run dev
